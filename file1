@@ -1,0 +1,82 @@
+'''
+Задание 3. В массиве случайных целых чисел поменять местами минимальный и максимальный элементы.
+Вариант исполнения без встроенных функций.
+'''
+import random
+rand_ls = []
+for i in range(20):
+    el = int(random.randint(1, 100))
+    rand_ls.append(el)
+
+max_el = rand_ls[0]
+count_max_el = 0
+count_el = 0
+
+for j in rand_ls:
+    if j > max_el:
+        max_el = j
+        count_max_el = count_el
+    count_el += 1
+max_index = count_max_el
+
+min_el = rand_ls[0]
+count_min_el = 0
+count_el_1 = 0
+
+for k in rand_ls:
+    if k < min_el:
+        min_el = k
+        count_min_el = count_el_1
+    count_el_1 += 1
+min_index = count_min_el
+
+print(f'Массив со значениями: {rand_ls}\n')
+print(f'Максимальный элемент и его индекс: {max_el}, {max_index}\n')
+print(f'Минимальный элемент и его индекс:  {min_el}, {min_index}\n')
+rand_ls[max_index] = min_el
+rand_ls[min_index] = max_el
+print(f'Массив после замены элементов: {rand_ls}')
+'''
+Память, выделяемая на переменные:
+rand_ls - список из 20 элементов. Занимаемая память: 690 бит
+    - 24*20=480 бит, на элементы
+    - 40+8*20=200 бит, на список
+el, max_el, count_max_el, count_el, min_el, count_min_el, count_el_1, max_index, min_index:
+    - переменные типа int занимают в памяти 216 бит
+В итоге все переменные занимают 906 бит
+'''
+
+'''
+Задание 3. В массиве случайных целых чисел поменять местами минимальный и максимальный элементы.
+Вариант исполнения c использованием встроенных функций.
+'''
+import random
+rand_ls = []
+for i in range(20):
+    el = int(random.randint(1, 100))
+    rand_ls.append(el)
+
+max_el = max(rand_ls)
+min_el = min(rand_ls)
+
+max_index = rand_ls.index(max(rand_ls))
+
+min_index = rand_ls.index(min(rand_ls))
+
+print(f'Массив со значениями: {rand_ls}\n')
+print(f'Максимальный элемент и его индекс: {max_el}, {max_index}\n')
+print(f'Минимальный элемент и его индекс:  {min_el}, {min_index}\n')
+rand_ls[max_index] = min_el
+rand_ls[min_index] = max_el
+print(f'Массив после замены элементов: {rand_ls}')
+
+'''
+Память, выделяемая на переменные:
+rand_ls - список из 20 элементов. Занимаемая память: 690 бит
+    - 24*20=480 бит, на элементы
+    - 40+8*20=200 бит, на список
+el, max_el, min_el, max_index, min_index:
+    - переменные типа int занимают в памяти 120 бит
+В итоге все переменные занимают 810 бит
+С использованием встроенных функций выделяется меньше памяти
+'''
